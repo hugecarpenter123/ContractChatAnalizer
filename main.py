@@ -1,5 +1,8 @@
 import os
 import codecs
+from ApiManager import APIManagerZad1
+from ApiManager import APIManagerZad2
+from ApiManager import APIManagerZad3
 
 folder_path = './res/smartcontracts'
 output_folder_path = './res/output'
