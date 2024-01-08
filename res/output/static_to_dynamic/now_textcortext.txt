@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+from manticore.ethereum import ManticoreEVM
+
+# Create a Manticore instance
+m = ManticoreEVM()
+
+# Create a new account with some balance
+user_account = m.create_account(balance=1000)
+
+# Create the contract
+contract_account = m.create_contract(owner=user_account,
+                                    code=open('now.sol').read())
+
+# Set the time
+contract_account.set()
+
+# Guess the time
+contract_account.guess(m.block.timestamp + 4 * 7 * 24 * 60 * 60)
+
+# Check the state
+assert contract_account.echidna_now() == False
+
+# Generate a test case
+m.generate_testcase()

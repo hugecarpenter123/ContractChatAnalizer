@@ -1,0 +1,81 @@
+To improve the test coverage of your Solidity smart contract using dynamic analysis with Manticore, you can follow these steps and suggestions:
+
+1. **Set up Manticore:**
+   - Install Manticore CLI globally by following the instructions on their [official website](https://github.com/ChainSafe/mantis#installation).
+   - Ensure that you have a supported version of Solidity installed. Manticore currently supports Solidity versions 0.4.25, 0.5.10, 0.6.10, and 0.7.4.
+
+2. **Write Contract Unit Tests:**
+   - Create a separate file for your contract unit tests, e.g., `Owned.tests.js`.
+   - Use a testing framework like Jest for writing consistent and structured tests.
+
+3. **Import Manticore and Solidity Compiler:**
+   - In your project's `package.json` file, add dependencies for Manticore and the Solidity compiler. For example:
+    ```json
+    {
+      "devDependencies": {
+        "manticore": "^1.3.0",
+        "solidity": "^0.8.0"
+      }
+    }
+    ```
+
+4. **Compile Contract and Deploy on Local Ethereum Network:**
+   - Use a development framework like Truffle that integrates with the Solidity compiler and provides a local Ethereum network for deployment.
+   - Compile your contract with the Solidity compiler and deploy it to the local network.
+
+5. **Write Dynamic Analysis Tests with Manticore:**
+   - Use the Manticore CLI to write and execute dynamic analysis tests for your contract. You can simulate different attack vectors and verify the contract's behavior and security assumptions.
+
+6. **Implement Manticore Test Cases:**
+   - Write test cases to cover different scenarios, including normal behavior, edge cases, and potential vulnerabilities. For example, you could test the `transferOwnership` method to ensure that only the current owner can call it.
+
+   ```javascript
+   // Owned.tests.js
+   const { ethers } = require("hardhat");
+   const { LedgerLive } = require("@ethersproject/ledger-live-provider");
+   const { getContractFactory } = require("../deployUtils");
+   
+   const { expect } = require("@esm-bundle/chai");
+   const { solidity } = require("ethereum-waffle");
+   const { providers } = require("ethers");
+   
+   const { parseEther } = ethers.utils;
+   const { getRandomBytes } = providers.echers;
+   
+   async function testTransferOwnership(owned, owner, newOwner) {
+       await owned.transferOwnership(newOwner);
+       const newOwnerBalance = await owned.balanceOf(newOwner);
+       const ownerBalance = await owned.balanceOf(owner);
+       expect(newOwnerBalance).to.eq(ownerBalance);
+   }
+   
+   async function testOwnedConstructor(owned) {
+       expect(owned.address).to.eq(await owned.owner());
+   }
+   
+   async function testOnlyOwnerModifier(owned, owner) {
+       const randomPerson = ethers.Wallet.createRandom().address;
+       await expect(owned.doSomething(randomPerson)).to.be.revertedWith("Only owner");
+       await owned.doSomething(owner);
+   }
+   
+   async function test Owned() {
+       const owned = await getContractFactory("Owned").deploy();
+       await testOwnedConstructor(owned);
+       await testTransferOwnership(owned, ethers.constants.AddressZero, await ethers.provider.getAddress());
+       await testOnlyOwnerModifier(owned, await ethers.provider.getAddress());
+   }
+   
+   module.exports = {
+       testOwned: testOwned
+   };
+```
+
+7. **Run Tests:**
+   - Use Jest to run your contract unit tests and Manticore to run your dynamic analysis tests.
+
+By following these steps, you can enhance your smart contract testing coverage by incorporating both static checks with Solhint and dynamic analysis with Manticore. This combined approach ensures a more thorough validation of your contract's behavior and security. 
+
+Remember to adapt these steps and examples to your specific project setup and requirements. 
+
+If you have any further questions or need additional assistance, please don't hesitate to ask!

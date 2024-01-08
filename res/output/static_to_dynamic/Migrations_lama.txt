@@ -1,0 +1,42 @@
+Hello! I'm here to help you with your Solidity smart contracts and Manticore testing. 😊
+
+To add tests for your `Migrations` contract using Manticore, you will need to create a test file with the proper setup and assertions. Here's a sample test case to get you started:
+```scss
+const Migrations = artifacts.require("Migrations");
+
+contract MigrationsTest {
+  let migrations;
+
+  beforeEach(async () => {
+    migrations = await Migrations.new();
+  });
+
+  it("should set the owner to the creator", async () => {
+    assert.equal(migrations.owner, migrations.msg.sender);
+  });
+
+  it("should set the last completed migration to 0", async () => {
+    assert.equal(migrations.lastCompletedMigration, 0);
+  });
+
+  it("should allow the owner to upgrade the contract", async () => {
+    const newAddress = "0x..."; // replace with a valid address
+    await migrations.upgrade(newAddress);
+    assert.equal(migrations.owner, newAddress);
+  });
+
+  it("should not allow non-owner to upgrade the contract", async () => {
+    const newAddress = "0x..."; // replace with a valid address
+    await assert.rejects(migrations.upgrade(newAddress), "Only the owner can upgrade the contract");
+  });
+}
+```
+This test case sets up a new instance of the `Migrations` contract, checks that the owner is set to the creator, and that the last completed migration is set to 0. It also tests that the owner can upgrade the contract, and that non-owners cannot.
+
+You can run this test case using the Manticore CLI:
+```bash
+manticore run --test-file MigrationsTest.sol
+```
+This will run the test case and output the results. You can also run the test case with specific flags to customize the output, such as `--test-file` to specify the test file, or `--output` to specify the output format.
+
+I hope this helps! Let me know if you have any questions or need further assistance. 😊

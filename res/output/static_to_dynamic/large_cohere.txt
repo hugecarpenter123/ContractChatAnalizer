@@ -1,0 +1,84 @@
+Sure, here is an example of dynamic smart contract testing using the Manticore tool:
+
+```python
+# Assuming you have the Manticore tool installed and accessible via the command line
+
+# Define the smart contract interface
+contract_interface = """
+interface C {
+    function set(uint x);
+    function echidna_large() external view returns (bool);
+}
+"""
+
+# Compile the smart contract
+solhint_errors = """
+Contract: large
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/large.sol
+  1:1   error    Compiler version must be declared             compiler-version
+  2:5   warning  Rule is set with explicit type [var/s: uint]  explicit-types
+  3:18  warning  Rule is set with explicit type [var/s: uint]  explicit-types
+  7:5   warning  Function name must be in mixedCase            func-name-mixedcase
+
+✖ 4 problems (1 error, 3 warnings)
+"""
+contract_bytecode = compile_contract('large.sol', 'C', interface_code=contract_interface)
+
+# Generate a random input for the set function
+input_set = 123456789
+
+# Generate a random output for the echidna_large function
+output_large = False
+
+# Generate the Manticore script
+manticore_script = f"""
+import solidity
+
+{{
+  "given": {{
+    "inputs": [
+      {{
+        "name": "set", "type": "uint256", "value": {input_set}
+      }}
+    ]
+  }}
+}}
+
+{{
+  "when": {{
+    "function": "C.echidna_large()",
+    "output": {{
+      "storage": {{
+        "x": {{
+          "value": {output_large}
+        }}
+      }}
+    }}
+  }}
+}}
+"""
+
+# Run the Manticore script and parse the result
+result = run_manticore(manticore_script, contract_interface, contract_bytecode)
+
+# Check if the result is as expected
+if result.return_value == output_large:
+    print("Echidna_large function returned correct result.")
+else:
+    print("Echidna_large function returned incorrect result.")
+
+```
+
+This Python script does the following:
+1. It defines the smart contract interface as a string, including the `set` and `echidna_large` functions.
+2. It compiles the smart contract, assuming the compilation results are stored in `solhint_errors`.
+3. It generates random inputs and outputs for the smart contract functions.
+4. It generates a Manticore script that sets the random input and expects the random output.
+5. It runs the Manticore script and checks if the output is as expected.
+
+Remember to install and import the necessary dependencies (`solhint`, `compile_contract`, and `run_manticore`) before running this script. 
+
+This is just one example of how to test a dynamic smart contract using Manticore. The specific commands and approach may vary depending on your project's requirements and the testing framework you choose to work with. 
+
+Would you like me to assist you in writing additional test cases or optimizing this testing process using Manticore?

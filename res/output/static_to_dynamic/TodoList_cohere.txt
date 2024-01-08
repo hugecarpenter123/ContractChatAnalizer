@@ -1,0 +1,33 @@
+If you provide the source code for the Solidity contract and the tests you'd like to write for it, I can assist you in generating dynamic tests for the contract using Manticore. Could you share the contract code and the specific tests you'd like to write for it? 
+
+Here's an example of how you can use Manticore to generate dynamic ABI encoder tests for a Solidity contract:
+```python
+import pytest
+from web3 import Web3
+from web3.contract import Contract
+from mantis.core.utils import generate_dynamic_abi_tests
+
+@pytest.fixture
+def contract_address():
+    return "0x..."  # Provide the actual contract address here
+
+@pytest.fixture
+def todo_list_contract(web3: Web3, contract_address):
+    contract = web3.contract(abi=TodoList.abi, address=contract_address)
+    return contract
+
+@pytest.fixture
+def dynamic_tests(todo_list_contract):
+    yield from generate_dynamic_abi_tests(todo_list_contract)
+
+def test_dynamic_abi(dynamic_tests):
+    # Now you can run the dynamic tests using pytest
+    for test in dynamic_tests:
+        test()
+```
+
+You'll need to replace the placeholders with the actual values. Make sure you have the `TodoList` contract ABI and address available, and you can use the `generate_dynamic_abi_tests` function to dynamically create and yield tests based on the contract methods and their signatures. 
+
+Please note that you would need to install the required dependencies, such as `web3`, `pytest`, and `mantis` (or `manticore`). 
+
+Would you be able to provide the necessary information so that I can assist you in generating specific dynamic tests for the TodoList contract and its methods?

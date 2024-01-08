@@ -1,0 +1,80 @@
+Hello! As a helpful and concise assistant, I'd be happy to assist you with testing your smart contracts using the Solhint and Manticore tools.
+
+You have a smart contract named `Users` with the version `^0.4.24` and the tests you want to run are:
+
+1. Check that the contract has the correct version.
+2. Check that the contract has the correct author.
+3. Check that the contract has the correct title.
+4. Check that the contract has the correct description.
+5. Check that the contract has the correct timestamp.
+6. Check that the contract has the correct pseudo.
+7. Check that the contract has the correct address.
+8. Check that the contract has the correct balance.
+
+To run these tests, you can use the Solhint and Manticore tools.
+
+Solhint is a tool that checks the smart contracts for errors and warnings. It can be used to check the contracts for correctness, security, and best practices.
+
+Manticore is a tool that allows you to run dynamic tests on your smart contracts. It can be used to check the contracts for correctness, security, and best practices.
+
+Here are the test cases for your smart contract:
+
+1. Check that the contract has the correct version.
+```
+test "version", async () => {
+  assert.equal(contract.version, "^0.4.24");
+};
+```
+2. Check that the contract has the correct author.
+```
+test "author", async () => {
+  assert.equal(contract.author, "David Li");
+};
+```
+3. Check that the contract has the correct title.
+```
+test "title", async () => {
+  assert.equal(contract.title, "Users");
+};
+```
+4. Check that the contract has the correct description.
+```
+test "description", async () => {
+  assert.equal(contract.description, "Basic user registerion system, could add timestamp, when user registered.");
+};
+```
+5. Check that the contract has the correct timestamp.
+```
+test "timestamp", async () => {
+  assert.equal(contract.timestamp, "");
+};
+```
+6. Check that the contract has the correct pseudo.
+```
+test "pseudo", async () => {
+  assert.equal(contract.pseudo, "");
+};
+```
+7. Check that the contract has the correct address.
+```
+test "address", async () => {
+  assert.equal(contract.address, "");
+};
+```
+8. Check that the contract has the correct balance.
+```
+test "balance", async () => {
+  assert.equal(contract.balance, "");
+};
+```
+To run these tests, you can use the Solhint and Manticore tools.
+
+Solhint can be used to check the contracts for errors and warnings. You can run the following command to check the contracts for errors and warnings:
+```
+solhint Users.sol
+```
+Manticore can be used to run dynamic tests on the contracts. You can run the following command to run the tests:
+```
+manticore run Users.sol
+```
+I hope this helps! Let me know if you have any questions or need further assistance.

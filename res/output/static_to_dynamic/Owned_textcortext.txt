@@ -1,0 +1,12 @@
+# Test transferOwnership
+def test_transferOwnership(accounts):
+    ownedContract = Owned()
+    assert ownedContract.owner == accounts[0]
+    ownedContract.transferOwnership(accounts[1], {'from': accounts[0]})
+    assert ownedContract.owner == accounts[1]
+
+# Test onlyOwner modifier
+def test_onlyOwner(accounts):
+    ownedContract = Owned()
+    with raises(TransactionFailed):
+        ownedContract.transferOwnership(accounts[1], {'from': accounts[1]})

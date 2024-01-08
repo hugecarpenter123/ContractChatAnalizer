@@ -1,0 +1,23 @@
+# Testy dynamiczne dla smartkontraktu C
+from manticore.ethereum import ManticoreEVM
+
+# Tworzymy instancję ManticoreEVM
+m = ManticoreEVM()
+
+# Ładujemy kontrakt
+user_contract = m.solidity_create_contract('contract C { uint internal x; function set(uint _x) public { x = _x; } function echidna_large() public returns (bool) { return (x+1 != 0); } }', language='solidity')
+
+# Wywołujemy funkcję set
+user_contract.set(1)
+
+# Wywołujemy funkcję echidna_large
+assert user_contract.echidna_large() == True
+
+# Wywołujemy funkcję set z wartością 0
+user_contract.set(0)
+
+# Wywołujemy funkcję echidna_large
+assert user_contract.echidna_large() == False
+
+# Zakończ testy
+m.finalize()

@@ -1,0 +1,61 @@
+Sure, here's an example of dynamic smart contract tests using the Manticore tool:
+
+```
+// MarriageContractTest.manticore
+
+test "Happy path": {
+    // Create a new marriage contract
+    marriageContract := Marriage()
+
+    // Fund the contract
+    marriageContract.send(50)
+
+    // Check the balances
+    assert(marriageContract.balances[wife] == 25, "Wife's balance is incorrect")
+    assert(marriageContract.balances[husband] == 25, "Husband's balance is incorrect")
+
+    // Withdraw half the funds
+    marriageContract.withdraw({{ sender: wife }})
+
+    // Check the balances after withdrawal
+    assert(marriageContract.balances[wife] == 0, "Wife's balance is incorrect after withdrawal")
+    assert(marriageContract.balances[husband] == 25, "Husband's balance is incorrect after withdrawal")
+}
+
+test "Withdrawal with insufficient balance": {
+    // Create a new marriage contract
+    marriageContract := Marriage()
+
+    // Fund the contract with only enough to cover the withdrawal fee
+    marriageContract.send(10)
+
+    // Try to withdraw more than the balance
+    transaction := marriageContract.withdraw({{ sender: wife, value: 30 }})
+
+    // Check that the transaction failed
+    assert(transaction.isError, "Withdrawal transaction should have failed")
+    assert(transaction.errorMessage == "Insufficient balance", "Incorrect error message")
+
+    // Check the balances after failed withdrawal
+    assert(marriageContract.balances[wife] == 0, "Wife's balance is incorrect after failed withdrawal")
+    assert(marriageContract.balances[husband] == 10, "Husband's balance is incorrect after failed withdrawal")
+}
+```
+
+In this example, we have two tests written in Manticore's `.manticore` file format:
+
+1. **Happy Path**: This test verifies the normal flow of the marriage contract. It creates a new contract, funds it with some amount, checks the initial balances, performs a successful withdrawal, and then checks the balances again.
+
+2. **Withdrawal with Insufficient Balance**: This test covers a scenario where a withdrawal is attempted with more value than the sender's balance. It creates a contract with a balance of only 10 (not enough to cover a 30 withdrawal fee), performs the withdrawal, and checks that the transaction failed due to insufficient balance.
+
+To run these tests, you would use the Manticore tool as follows:
+
+```
+$ manticore run MarriageContractTest.manticore
+```
+
+Manticore is a dynamic analysis tool for Ethereum smart contracts that supports both local and cloud-based execution. It specializes in generating random inputs and interacting with smart contracts in a way that simulates real-world usage. 
+
+Note that you would need to have the Manticore tool installed and properly configured in your environment to run these tests. You can find installation instructions and further documentation for Manticore [here](https://github.com/celo-org/celo-monorepo/tree/master/packages/manticore). 
+
+If you have additional questions or need further assistance with anything related to smart contracts, testing, or Manticore, feel free to ask!

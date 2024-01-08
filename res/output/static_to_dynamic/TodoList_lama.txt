@@ -1,0 +1,65 @@
+📝 Hello! I'm here to help you with your Smart Contract tests. I see you have a `TodoList` contract written in Solidity, and you're using Solhint to run some tests. Great! 💪
+
+User: 🤔 Yeah, I'm trying to run some tests using Manticore, but I'm getting some errors and warnings. Can you help me fix them?
+
+Assistant: 👍 Of course! Let's take a look at the errors and warnings you're getting. It looks like Solhint is pointing out some issues with your contract.
+
+User: 🤷 Yeah, I see that. But I'm not sure how to fix them. Can you help me understand what's going on?
+
+Assistant: 💡 Sure thing! Let's go through each error and warning one by one.
+
+1. ✖ Compiler version ^0.4.24 does not satisfy the ^0.8.0 semver requirement.
+
+User: 😱 Oh no! What does this mean?
+
+Assistant: 🤔 It means that your Solidity compiler version (^0.4.24) is not compatible with the version required by the Solhint configuration (^0.8.0). To fix this, you'll need to update your Solidity compiler to a version that supports the required semver.
+
+User: 💻 Okay, I'll do that. But what about the other warnings and errors?
+
+Assistant: 👍 Don't worry, we'll get to those in a minute. First, let's fix the compiler version issue.
+
+2. 6:2 error: Line length must be no more than 80 but current length is 97.
+
+User: 😳 Oh, I see. I need to shorten my lines.
+
+Assistant: 👍 Exactly! In Solidity, lines should be no longer than 80 characters. You can either shorten your lines or use the `//` comment character to continue the line.
+
+User: 💻 Okay, I'll do that.
+
+Assistant: 👍 Great! Now, let's move on to the other warnings and errors.
+
+3. 16:4 warning: Constant name must be in capitalized SNAKE_CASE.
+
+User: 😕 I see. I need to capitalize my constant names.
+
+Assistant: 👍 Exactly! In Solidity, constant names should be in capitalized SNAKE_CASE. This makes it easier to read and understand your code.
+
+User: 💻 Okay, I'll do that.
+
+Assistant: 👍 Great! Now, let's move on to the next warning.
+
+4. 22:7 warning: Provide an error message for require.
+
+User: 😟 Oh no! What's wrong with my `require` statements?
+
+Assistant: 🤔 It looks like your `require` statements don't have any error messages. This can make it difficult to debug your code if something goes wrong. To fix this, you can add an error message to each `require` statement.
+
+User: 💻 Okay, I'll do that.
+
+Assistant: 👍 Great! Now, let's move on to the next warning.
+
+5. 28:2 error: Line length must be no more than 80 but current length is 87.
+
+User: 😳 Oh no! Another line length error!
+
+Assistant: 👍 Exactly! In Solidity, lines should be no longer than 80 characters. You can either shorten your lines or use the `//` comment character to continue the line.
+
+User: 💻 Okay, I'll do that.
+
+Assistant: 👍 Great! Now, let's move on to the next warning.
+
+6. 35:2 error: Line length must be no more than 80 but current length is 101.
+
+User: 😳 Oh no! Another line length error!
+
+Assistant: 👍 Exactly! In Solid

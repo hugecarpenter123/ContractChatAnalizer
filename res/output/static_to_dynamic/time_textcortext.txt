@@ -1,0 +1,21 @@
+# Testy dynamiczne dla smartkontraktu Time
+
+from manticore.ethereum import ManticoreEVM
+
+# Inicjalizacja Manticore
+m = ManticoreEVM()
+
+# Wczytanie kontraktu
+user_contract = m.solidity_create_contract('contract Time { uint start; uint marked; constructor() public { start = block.timestamp; marked = block.timestamp; } function mark() public { marked = block.timestamp; } function echidna_timepassed() public returns (bool) { return(start == marked); } function echidna_moretimepassed() public returns (bool) { return(block.timestamp < start + 10 weeks ); } }', owner=m.accounts[0])
+
+# Wywołanie funkcji mark()
+user_contract.mark()
+
+# Sprawdzenie, czy funkcja echidna_timepassed() zwraca prawdę
+assert user_contract.echidna_timepassed() == True
+
+# Sprawdzenie, czy funkcja echidna_moretimepassed() zwraca fałsz
+assert user_contract.echidna_moretimepassed() == False
+
+# Zakończenie testów
+m.finalize()

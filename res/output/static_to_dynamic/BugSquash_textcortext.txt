@@ -1,0 +1,17 @@
+# Testujemy, czy funkcja squash zmienia stan na Squashed
+@manticore.test
+def squash_test():
+    m = ManticoreBugSquash()
+    initial_state = m.state
+    m.squash()
+    assert m.state == State.Squashed
+    assert initial_state == State.Alive
+
+# Testujemy, czy funkcja kill działa poprawnie dla właściciela
+@manticore.test
+def kill_test():
+    m = ManticoreBugSquash()
+    initial_state = m.state
+    m.kill()
+    assert m.state == State.Squashed
+    assert initial_state == State.Squashed

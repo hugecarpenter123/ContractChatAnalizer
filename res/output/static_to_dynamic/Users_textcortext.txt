@@ -1,0 +1,27 @@
+# Test 1
+@manticore.test
+def test_create_user():
+    users = manticore.get_contract_instance(Users)
+    user_address = manticore.create_account(balance=1000)
+    pseudo = manticore.make_symbolic_buffer(32)
+    users.create(pseudo, caller=user_address)
+    assert users.exists(user_address)
+
+# Test 2
+@manticore.test
+def test_destroy_user():
+    users = manticore.get_contract_instance(Users)
+    user_address = manticore.create_account(balance=1000)
+    pseudo = manticore.make_symbolic_buffer(32)
+    users.create(pseudo, caller=user_address)
+    users.destroy(caller=user_address)
+    assert not users.exists(user_address)
+
+# Test 3
+@manticore.test
+def test_get_user():
+    users = manticore.get_contract_instance(Users)
+    user_address = manticore.create_account(balance=1000)
+    pseudo = manticore.make_symbolic_buffer(32)
+    users.create(pseudo, caller=user_address)
+    assert users.get(user_address) == pseudo

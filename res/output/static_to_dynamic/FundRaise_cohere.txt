@@ -1,0 +1,35 @@
+Sure, here is an example of dynamic smart contract testing on the FundRaise contract using Manticore:
+
+```python
+from cryptopunks import *
+
+def test_ FundRaise_constructor():
+   punk = Punk(3)
+   fund_raise_contract = FundRaise.deploy(punk.address)
+   assert fund_raise_contract.owner() == punk.address
+
+def test_FundRaise_pause_unpause():
+   fund_raise_contract = FundRaise.deploy(address(0))
+   fund_raise_contract.pause()
+   assert fund_raise_contract.paused() == True
+   fund_raise_contract.unpause()
+   assert fund_raise_contract.paused() == False
+
+def test_FundRaise_onlyOwner_whenNotPaused():
+   fund_raise_contract = FundRaise.deploy(address(0))
+   assert fund_raise_contract.onlyOwner()(fund_raise_contract.pause()) == None
+   assert fund_raise_contract.whenNotPaused()(fund_raise_contract.removeFunds()) == None
+
+```
+
+This test suite uses the Manticore framework to perform three dynamic tests on the FundRaise contract. 
+
+1. `FundRaise_constructor`: This test checks the owner of the contract immediately after deployment. It does this by first creating a `Punk` instance (which has the `address` property), and then deploying the `FundRaise` contract with the `Punk` instance's address. It then asserts that the owner of the `FundRaise` contract is the same as the address of the `Punk` instance. 
+
+2. `FundRaise_pause_unpause`: This test first deploys a `FundRaise` contract and then pauses it. It then asserts that the contract is indeed paused. The test then unpauses the contract and asserts that it is no longer paused. 
+
+3. `FundRaise_onlyOwner_whenNotPaused`: This test calls two functions on the contract, using two different modifiers. `onlyOwner` modifier asserts that the caller of the function is the owner of the contract, and `whenNotPaused` modifier asserts that the contract is not paused. 
+
+Note that you would need to install the `cryptopunks` and `manticore-contracts` libraries in your Python environment in order to run these tests. 
+
+Would you like to know more about any of these tools?

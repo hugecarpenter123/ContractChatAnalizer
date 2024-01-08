@@ -1,0 +1,110 @@
+To improve the test coverage of your Lottery contract and check for potential vulnerabilities, you can write additional static and dynamic tests:
+1. Static Tests (Solhint):
+- Add error messages to require statements: Instead of using the bare require statements, you can create custom error messages to provide more context when requirements are not met. This can be done by adding a second parameter to the require function, which accepts a string describing the error. 
+ For example, require(msg.value > .01 ether, "Entry fee must be greater than 0.01 ether").
+- Use explicit types: The code utilizes the explicit types feature, which is available since Solidity 0.4.17. However, you can annotate variable types to make the code even more readable and maintainable.
+
+2. Dynamic Tests (Manticore):
+- Basic tests: Create a series of transactions to verify basic functionalities. For example:
+- Enter a candidate: Send a transaction with a value greater than 0.01 ether to test the enter function.
+- Get current balance: Call the getCurrentBalance function and verify that the returned value is correct.
+- Get number of players and get players: Call the respective functions and verify that the returned values match the actual number of players and that the players array contains the expected addresses.
+- Win the lottery: Simulate a winner selection by calling pickWinner and verify that the winner's address is correctly chosen and that the players array is reset.
+- Boundary tests: Test the contract with extreme values and edge cases. For example:
+- Enter candidates with a value less than the required threshold.
+- Enter candidates with an invalid address (e.g., an EOA or a contract address).
+- Call pickWinner before any player is entered.
+- Enter the same address multiple times.
+- Randomness tests: Test the randomness function to ensure it produces unbiased results. For example:
+- Enter a few players and compare the result of random() with the index of the winner after calling pickWinner. Perform this test multiple times and verify that the winner is chosen randomly.
+
+Remember to adapt the tests to your specific needs and use appropriate values and scenarios to cover different cases in your contract.
+
+Here's an example of how some of the above tests could look in code:
+```solidity
+pragma solidity ^0.4.17;
+
+import "@ SPDX-License-Identifier: UNLICENSED ";
+
+contract Lottery {
+  address public manager;
+  address[] public players;
+
+  constructor() public {
+    manager = msg.sender;
+  }
+
+  function enter() public payable {
+    require(msg.value > 0.01 ether);
+    players.push(msg.sender);
+  }
+
+  function pickWinner() public restricted {
+    uint index = random() % players.length;
+    players[index].transfer(address(this).balance);
+    address winner = players[index];
+    players = new address[](0);
+    return winner;
+  }
+
+  function getCurrentBalance() public view returns(uint) {
+    return address(this).balance / (1 ether);
+  }
+
+  function getNumberOfPlayer() public view returns(uint) {
+    return players.length;
+  }
+
+  function getPlayers() public view returns(address[]) {
+    return players;
+  }
+
+  function random() private view returns(uint) {
+    return uint(sha256(abi.encodePacked(block.difficulty, now, players)));
+  }
+
+  modifier restricted() {
+    require(msg.sender == manager);
+    require(players.length > 0);
+    _;
+  }
+}
+
+// Dynamic tests using Manticore
+import "manticore-ETHERSCAN-API";
+
+import { Lottery } from './lottery.sol';
+
+contract TestLottery {
+  function testEnter() public {
+    // Deploy the Lottery contract
+    Lottery lottery = Lottery.deploy(msg.sender);
+    // Enter a player
+    lottery.enter({value: 1 ether});
+    // Check that the player was added correctly
+    assertEq(lottery.getNumberOfPlayer(), 1);
+    // Check the current balance
+    assertEq(lottery.getCurrentBalance(), 1);
+  }
+
+  function testPickWinner() public {
+    // Deploy the Lottery contract
+    Lottery lottery = Lottery.deploy(msg.sender);
+    // Enter 2 players
+    lottery.enter({value: 1 ether});
+    lottery.enter({value: 2 ether});
+    // Pick a winner
+    address winner = lottery.pickWinner();
+    // Check that the winner has the correct balance
+    assertEq(lottery.getPlayers()[0].balance, 3);
+    assertEq(lottery.getPlayers()[1].balance, 2);
+  }
+}
+```
+Remember to adapt the tests to your specific needs and use appropriate values and scenarios to cover different cases in your contract. Additionally, ensure you have Manticore installed and properly configured to run the dynamic tests. 
+
+Keep in mind that writing comprehensive tests is crucial to ensure the correctness of your smart contract and to catch potential vulnerabilities or bugs. It's recommended to use a combination of static and dynamic tests to achieve higher test coverage and reliability. 
+
+Please note that the code provided above is a basic example and may need further refinement based on your specific contract logic and requirements. 
+
+Is there anything specific you'd like to know or cover regarding testing Solidity smart contracts?

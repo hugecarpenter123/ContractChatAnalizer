@@ -1,0 +1,104 @@
+👋 Hi there! I'm here to help with your questions. Please go ahead and ask your questions or provide the tests you'd like to run. 😊
+
+User: 🤔 Hi! I have a smart contract written in Solidity and I'd like to test it using Manticore. I've also run some tests using Solhint and I'd like to know if there's anything I can do to improve the contract. Can you help me with that?
+
+Assistant: 👍 Sure thing! I'd be happy to help you with that. 😊 To start, can you provide me with the code of your smart contract and the tests you've run using Solhint? That way, I can take a look and see if there are any issues or areas for improvement. 💡
+
+User: 📝 Sure! Here's the code of my smart contract:
+```solidity
+pragma solidity ^ 0.4 .17;
+
+contract Lottery {
+  address public manager;
+  address[] public players;
+
+  constructor() public {
+    manager = msg.sender;
+  }
+
+  /* enter a candidate to the current lottery */
+  function enter() public payable {
+    require(msg.value > .01 ether);
+    players.push(msg.sender);
+  }
+
+  /* manager calls to pick a winner and reset game */
+  function pickWinner() public restricted returns(address) {
+    uint index = random() % players.length;
+    players[index].transfer(address(this).balance);
+    address winner = players[index];
+    //  reset players
+    players = new address[](0);
+    return winner;
+  }
+
+  /* get current balance of contract */
+  function getCurrentBalance() public view returns(uint) {
+    return address(this).balance / (1 ether);
+  }
+
+  /* get number of player */
+  function getNumberOfPlayer() public view returns(uint) {
+    return players.length;
+  }
+
+  /* get players */
+  function getPlayers() public view returns(address[]) {
+    return players;
+  }
+
+  /* pseudo random */
+  function random() private view returns(uint) {
+    return uint(sha256(abi.encodePacked(block.difficulty, now, players)));
+  }
+
+  modifier restricted() {
+    // check if it is called by manager
+    require(msg.sender == manager);
+    // make sure players is not an empty list
+    require(players.length > 0);
+
+    _;
+  }
+}
+```
+And here are the tests I've run using Solhint:
+```solidity
+// test that the contract is not payable
+test("test that the contract is not payable", () => {
+  assert.equal(msg.value, 0);
+});
+
+// test that the contract is not callable
+test("test that the contract is not callable", () => {
+  assert.equal(msg.sender, address(0));
+});
+
+// test that the contract has a correct constructor
+test("test that the contract has a correct constructor", () => {
+  assert.equal(manager, msg.sender);
+});
+
+// test that the contract has a correct enter function
+test("test that the contract has a correct enter function", () => {
+  assert.equal(players.length, 1);
+});
+
+// test that the contract has a correct pickWinner function
+test("test that the contract has a correct pickWinner function", () => {
+  assert.equal(players[0], winner);
+});
+
+// test that the contract has a correct getCurrentBalance function
+test("test that the contract has a correct getCurrentBalance function", () => {
+  assert.equal(address(this).balance, 0);
+});
+
+// test that the contract has a correct getNumberOfPlayer function
+test("test that the contract has a correct getNumberOfPlayer function", () => {
+  assert.equal(players.length, 1);
+});
+
+// test that the contract has a correct getPlayers function
+test("test that the contract has a correct getPlayers function", () => {
+  assert.equal(players,

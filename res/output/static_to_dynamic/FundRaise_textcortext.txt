@@ -1,0 +1,48 @@
+# Testy dynamiczne dla smartkontraktu FundRaise
+
+from manticore.ethereum import ManticoreEVM
+
+# Inicjalizacja Manticore
+m = ManticoreEVM()
+
+# Wczytanie kontraktu
+user_account = m.create_account(balance=1000)
+contract_account = m.solidity_create_contract('FundRaise.sol', owner=user_account)
+
+# Testowanie funkcji pause()
+with m.transaction(caller=user_account,
+                   address=contract_account,
+                   data=contract_account.pause()) as tx:
+    assert tx.return_value == 1
+    assert contract_account.paused() == True
+
+# Testowanie funkcji unpause()
+with m.transaction(caller=user_account,
+                   address=contract_account,
+                   data=contract_account.unpause()) as tx:
+    assert tx.return_value == 1
+    assert contract_account.paused() == False
+
+# Testowanie funkcji removeFunds()
+with m.transaction(caller=user_account,
+                   address=contract_account,
+                   data=contract_account.removeFunds()) as tx:
+    assert tx.return_value == 1
+    assert user_account.balance == 1000 + contract_account.balance()
+
+# Testowanie fallback function
+with m.transaction(caller=user_account,
+                   address=contract_account,
+                   value=1000) as tx:
+    assert tx.return_value == 1
+    assert contract_account.balance() == 1000
+
+# Testowanie funkcji echidna_test_pass()
+with m.transaction(caller=user_account,
+                   address=contract_account,
+                   data=contract_account.echidna_test_pass()) as tx:
+    assert tx.return_value == 1
+    assert contract_account.echidna_test_pass() == True
+
+# Zakończenie testów
+m.finalize()

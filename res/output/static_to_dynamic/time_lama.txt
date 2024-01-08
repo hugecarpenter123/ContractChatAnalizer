@@ -1,0 +1,60 @@
+Sure, I'd be happy to help! To test the `time` smart contract using Manticore, you can use the following tests:
+
+1. Test that the contract's constructor is called when the contract is deployed:
+```
+test("Constructor is called when deployed", async () => {
+  const result = await deploy(time);
+  assert.equal(result.logs.length, 1);
+  assert.equal(result.logs[0].message, "Contract deployed");
+});
+```
+2. Test that the `mark` function updates the `marked` field:
+```
+test("Mark function updates marked field", async () => {
+  const time = await deploy(time);
+  const result = await time.mark();
+  assert.equal(result.logs.length, 1);
+  assert.equal(time.marked, time.start + 1);
+});
+```
+3. Test that the `echidna_timepassed` function returns `true` when the `marked` field is equal to the current timestamp:
+```
+test("Echidna time passed function returns true when marked is equal to current timestamp", async () => {
+  const time = await deploy(time);
+  time.mark();
+  const result = await time.echidna_timepassed();
+  assert.equal(result, true);
+});
+```
+4. Test that the `echidna_moretimepassed` function returns `true` when the current timestamp is less than the `start` field plus 10 weeks:
+```
+test("Echidna more time passed function returns true when current timestamp is less than start plus 10 weeks", async () => {
+  const time = await deploy(time);
+  time.mark();
+  const result = await time.echidna_moretimepassed();
+  assert.equal(result, true);
+});
+```
+5. Test that the `echidna_timepassed` function returns `false` when the `marked` field is not equal to the current timestamp:
+```
+test("Echidna time passed function returns false when marked is not equal to current timestamp", async () => {
+  const time = await deploy(time);
+  time.mark();
+  const result = await time.echidna_timepassed();
+  assert.equal(result, false);
+});
+```
+6. Test that the `echidna_moretimepassed` function returns `false` when the current timestamp is greater than or equal to the `start` field plus 10 weeks:
+```
+test("Echidna more time passed function returns false when current timestamp is greater than or equal to start plus 10 weeks", async () => {
+  const time = await deploy(time);
+  time.mark();
+  const result = await time.echidna_moretimepassed();
+  assert.equal(result, false);
+});
+```
+These tests cover the basic functionality of the `time` smart contract and can be used as a starting point for further testing.
+
+Additionally, you can use Manticore's built-in testing features to test the contract's functionality in a more comprehensive way. For example, you can use the `test_transaction` function to test the contract's behavior when a transaction is executed, or the `test_event` function to test the contract's event emissions.
+
+I hope this helps! Let me know if you have any other questions.

@@ -1,0 +1,29 @@
+# Test 1
+@manticore.test
+def test_withdraw_function():
+    m = manticore.ManticoreEVM()
+    # Create a new account
+    user_account = m.create_account(balance=1000)
+    # Create the Marriage contract
+    contract_account = m.solidity_create_contract('Marriage.sol', owner=user_account)
+    # Send some money to the contract
+    contract_account.deposit(value=1000, caller=user_account)
+    # Call the withdraw function
+    contract_account.withdraw(caller=user_account)
+    # Check that the user account balance is 2000
+    assert m.get_balance(user_account) == 2000
+
+# Test 2
+@manticore.test
+def test_deposit_function():
+    m = manticore.ManticoreEVM()
+    # Create two new accounts
+    wife_account = m.create_account(balance=1000)
+    husband_account = m.create_account(balance=1000)
+    # Create the Marriage contract
+    contract_account = m.solidity_create_contract('Marriage.sol', owner=wife_account)
+    # Send some money to the contract
+    contract_account.deposit(value=1000, caller=wife_account)
+    # Check that the wife and husband accounts have 500 each
+    assert m.get_balance(wife_account) == 500
+    assert m.get_balance(husband_account) == 500

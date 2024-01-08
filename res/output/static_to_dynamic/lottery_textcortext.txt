@@ -1,0 +1,42 @@
+# Test 1
+# Testujemy czy funkcja enter() jest wywoływana poprawnie
+@manticore.test
+def test_enter_function():
+    m = manticore.ManticoreEVM()
+    lottery = m.solidity_create_contract('Lottery.sol')
+    lottery.enter(value=m.make_wei(1, 'ether'))
+    assert m.get_balance(lottery.address) == m.make_wei(1, 'ether')
+
+# Test 2
+# Testujemy czy funkcja pickWinner() jest wywoływana poprawnie
+@manticore.test
+def test_pickWinner_function():
+    m = manticore.ManticoreEVM()
+    lottery = m.solidity_create_contract('Lottery.sol')
+    lottery.enter(value=m.make_wei(1, 'ether'))
+    lottery.pickWinner()
+    assert m.get_balance(lottery.address) == 0
+
+# Test 3
+# Testujemy czy funkcja getCurrentBalance() jest wywoływana poprawnie
+@manticore.test
+def test_getCurrentBalance_function():
+    m = manticore.ManticoreEVM()
+    lottery = m.solidity_create_contract('Lottery.sol')
+    lottery.enter(value=m.make_wei(1, 'ether'))
+    assert lottery.getCurrentBalance() == 1
+
+# Test 4
+# Testujemy czy funkcja getNumberOfPlayer() jest wywoływana poprawnie
+@manticore.test
+def test_getNumberOfPlayer_function():
+    m = manticore.ManticoreEVM()
+    lottery = m.solidity_create_contract('Lottery.sol')
+    lottery.enter(value=m.make_wei(1, 'ether'))
+    assert lottery.getNumberOfPlayer() == 1
+
+# Test 5
+# Testujemy czy funkcja getPlayers() jest wywoływana poprawnie
+@manticore.test
+def test_getPlayers_function():
+    m = m

@@ -1,0 +1,37 @@
+Sure, here is an example of dynamic smart contract tests using the Manticore tool:
+
+```
+// TimeTest.manticore
+
+test "initial values" <| Time.constructor() => {
+  start := fetch_big_uint(0, "start")
+  marked := fetch_big_uint(0, "marked")
+  return start == marked
+}
+
+test "mark function" <| Time.constructor(), mark() => {
+  start := fetch_big_uint(0, "start")
+  marked := fetch_big_uint(0, "marked")
+  return marked > start
+}
+
+test "echidna_timepassed function" <| Time.constructor() => {
+  start := fetch_big_uint(0, "start")
+  marked := fetch_big_uint(0, "marked")
+  return start != marked
+}
+
+test "echidna_moretimepassed function" <| Time.constructor() => {
+  start := fetch_big_uint(0, "start")
+  now := block_timestamp()
+  return start + 10 weeks > now
+}
+```
+
+This Manticore script defines four tests for the `Time` smart contract. 
+
+The first test, "initial values", checks that the values of the `start` and `marked` variables are the same after the constructor has been executed. The second test, "mark function", checks that the `marked` variable has a greater value than the `start` variable after the constructor and the `mark` function have been executed. The third test, "echidna_timepassed function", checks that the `start` and `marked` variables have different values after the constructor has been executed, assuming that the `echidna_timepassed` function returns `true` if they are not equal. The fourth test, "echidna_moretimepassed function", checks that the current timestamp is more than 10 weeks in the past from the `start` variable after the constructor has been executed, assuming that the `echidna_moretimepassed` function returns `true` if this condition is met.
+
+Note that this is just an example, and you may need to modify the tests to suit your specific use case. 
+
+Would you like me to assist you with anything else regarding smart contract testing?

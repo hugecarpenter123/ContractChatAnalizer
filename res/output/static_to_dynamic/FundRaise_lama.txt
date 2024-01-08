@@ -1,0 +1,58 @@
+Hi there! I'd be happy to help you with testing your smart contract. To test your contract dynamically with Manticore, you can use the following tests:
+
+1. Test that the contract owner can pause the contract:
+```
+testPause() {
+    let contract = new TestFundRaise();
+    contract.pause();
+    assert.equal(contract.paused, true);
+}
+```
+2. Test that only the contract owner can unpause the contract:
+```
+testUnpause() {
+    let contract = new TestFundRaise();
+    contract.pause();
+    assert.equal(contract.paused, true);
+    contract.unpause();
+    assert.equal(contract.paused, false);
+}
+```
+3. Test that the contract owner can remove funds from the contract:
+```
+testRemoveFunds() {
+    let contract = new TestFundRaise();
+    contract.transfer(10);
+    assert.equal(contract.balance, 10);
+    contract.removeFunds();
+    assert.equal(contract.balance, 0);
+}
+```
+4. Test that the contract's `echidna_test_pass` function returns `true`:
+```
+testEchidnaTestPass() {
+    let contract = new TestFundRaise();
+    assert.equal(contract.echidna_test_pass(), true);
+}
+```
+5. Test that the contract's `whenNotPaused` modifier correctly allows functions to be called when the contract is not paused:
+```
+testWhenNotPaused() {
+    let contract = new TestFundRaise();
+    contract.pause();
+    assert.equal(contract.whenNotPaused(), false);
+    contract.unpause();
+    assert.equal(contract.whenNotPaused(), true);
+}
+```
+6. Test that the contract's `onlyOwner` modifier correctly allows functions to be called only by the contract owner:
+```
+testOnlyOwner() {
+    let contract = new TestFundRaise();
+    contract.owner = "0x..."; // set the owner to a random address
+    assert.equal(contract.onlyOwner(), false);
+    contract.owner = msg.sender; // set the owner to the current sender
+    assert.equal(contract.onlyOwner(), true);
+}
+```
+These tests cover the basic functionality of your smart contract and can be used to ensure that it behaves as expected. Additionally, you can use Manticore to test other aspects of your contract, such as its performance and security.

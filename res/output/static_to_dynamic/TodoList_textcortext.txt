@@ -1,0 +1,38 @@
+# Test 1
+@manticore.test
+def test_add_todo_success():
+    # Create a new TodoList contract
+    todolist = manticore.get_contract_instance(TodoList)
+    # Create a new todo
+    todo_content = "Buy milk"
+    # Add the todo
+    todolist.addTodo(todo_content)
+    # Check that the todo was added
+    assert todolist.todos[manticore.accounts[0]][todolist.lastIds[manticore.accounts[0]]].content == todo_content
+
+# Test 2
+@manticore.test
+def test_mark_todo_as_completed_success():
+    # Create a new TodoList contract
+    todolist = manticore.get_contract_instance(TodoList)
+    # Create a new todo
+    todo_content = "Buy milk"
+    # Add the todo
+    todolist.addTodo(todo_content)
+    # Mark the todo as completed
+    todolist.markTodoAsCompleted(todolist.lastIds[manticore.accounts[0]])
+    # Check that the todo was marked as completed
+    assert todolist.todos[manticore.accounts[0]][todolist.lastIds[manticore.accounts[0]]].isCompleted == True
+
+# Test 3
+@manticore.test
+def test_mark_todo_as_completed_failure():
+    # Create a new TodoList contract
+    todolist = manticore.get_contract_instance(TodoList)
+    # Create a new todo
+    todo_content = "Buy milk"
+    # Add the todo
+    todolist.addTodo(todo_content)
+    # Try to mark the todo as completed with a different account
+    with raises(TransactionFailed):
+        todolist.markTodoAsCompleted(todolist.lastIds[manticore.accounts[0]], sender=mantic

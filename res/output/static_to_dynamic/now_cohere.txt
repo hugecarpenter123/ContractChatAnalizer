@@ -1,0 +1,55 @@
+Sure, here is an example of dynamic smart contract testing using Manticore on the given code:
+
+```python
+# Contract code
+contract C {
+  bool state;
+  uint time;
+
+  function set() public {
+    time = block.timestamp;
+  }
+
+  function guess(uint x) public {
+    require(x <= block.timestamp + 4 weeks && x >= block.timestamp - 4 weeks );
+    state = true;
+  }
+
+  function echidna_now() public view returns(bool) {
+    return (!state);
+  }
+
+} 
+
+# Manticore script
+import time
+
+time_travel_speed = '1 week'
+
+initial_time = time.time()
+
+# Deploy contract
+C = C()
+
+# Set time using Manticore's time travel feature
+time_travel(time_travel_speed)
+
+# Call guess() with a time value within the 4-week range
+C.guess(initial_time + 2 * time_travel_speed)
+
+# Check the echidna_now() result using Manticore's analysis
+assert C.echidna_now() == False
+
+# Undo time travel changes
+undo_time_travel()
+```
+
+In this example, we import the `time` module which allows us to change the time of our system. We define the time travel speed as `1 week` which represents the time in seconds that we will move forward using `time_travel`. 
+
+We then deploy the contract and set the initial time. We call the `guess()` function with a time value that is within the 4-week range and assert that the result of `echidna_now()` is `False`. 
+
+Please note that this is just an example of how you can use Manticore to perform dynamic testing on the given code. The specific tests you should perform will depend on your contract and the behavior you want to verify. 
+
+You can also use other tools like Solhint and Remix IDE in combination with Manticore for a more thorough testing approach. 
+
+Would you like to know more about any of these tools or the approaches to testing smart contracts?

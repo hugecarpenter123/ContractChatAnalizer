@@ -1,0 +1,45 @@
+# Migrations.sol
+from manticore.ethereum import ManticoreEVM
+
+# Create a new Manticore instance
+m = ManticoreEVM()
+
+# Create a new account
+user_account = m.create_account(balance=1000)
+
+# Create the contract
+contract_account = m.create_contract(owner=user_account,
+                                    code=open('Migrations.sol').read())
+
+# Set the last completed migration
+m.transaction(caller=user_account,
+              address=contract_account,
+              data=contract_account.setCompleted(1))
+
+# Upgrade the contract
+m.transaction(caller=user_account,
+              address=contract_account,
+              data=contract_account.upgrade(user_account))
+
+# Check the last completed migration
+for state in m.ready_states:
+    last_completed_migration = state.platform.get_storage_data(contract_account, 1)
+    assert last_completed_migration == 1
+
+# Check the owner
+for state in m.ready_states:
+    owner = state.platform.get_storage_data(contract_account, 0)
+    assert owner == user_account
+
+# Check the balance
+for state in m.ready_states:
+    balance = state.platform.get_balance(contract_account)
+    assert balance == 0
+
+# Check the code
+for state in m.ready_states:
+    code = state.platform.get_code(contract_account)
+    assert code == open('Migrations.sol').read()
+
+# Finalize the test
+m.finalize()

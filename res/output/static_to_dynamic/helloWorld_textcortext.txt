@@ -1,0 +1,22 @@
+# Test 1:
+# Testujemy, czy konstruktor HelloWorld działa poprawnie
+@manticore.test
+def test_constructor():
+    hw = manticore.make_symbolic_value()
+    hw_contract = HelloWorld(hw)
+    assert hw_contract.owner == hw
+
+# Test 2:
+# Testujemy, czy funkcja greet() zwraca poprawny napis
+@manticore.test
+def test_greet():
+    hw_contract = HelloWorld()
+    assert hw_contract.greet() == "Hello World"
+
+# Test 3:
+# Testujemy, czy funkcja kill() działa poprawnie
+@manticore.test
+def test_kill():
+    hw_contract = HelloWorld()
+    hw_contract.kill()
+    assert hw_contract.owner == 0
