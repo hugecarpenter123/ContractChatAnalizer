@@ -1,0 +1,15 @@
+Contract: Marriage
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/Marriage.sol
+   1:1  error    Compiler version ^0.4.24 does not satisfy the ^0.8.0 semver requirement  compiler-version
+   5:2  warning  Explicitly mark visibility of state                                      state-visibility
+   5:2  warning  Rule is set with explicit type [var/s: uint]                             explicit-types
+   6:2  warning  Explicitly mark visibility of state                                      state-visibility
+   7:2  warning  Explicitly mark visibility of state                                      state-visibility
+   8:2  warning  Explicitly mark visibility in function                                   func-visibility
+   9:2  warning  Rule is set with explicit type [var/s: uint]                             explicit-types
+  13:2  warning  Explicitly mark visibility in function                                   func-visibility
+  13:2  warning  Fallback function must be simple                                         no-complex-fallback
+
+✖ 9 problems (1 error, 8 warnings)
+

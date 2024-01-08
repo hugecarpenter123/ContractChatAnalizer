@@ -1,0 +1,17 @@
+Contract: bugSquash
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/bugSquash.sol
+   1:1  error    Compiler version ^0.4.8 does not satisfy the ^0.8.0 semver requirement                             compiler-version
+   5:2  warning  Explicitly mark visibility of state                                                                state-visibility
+   6:2  warning  Explicitly mark visibility of state                                                                state-visibility
+   7:2  warning  Constructors should use the new constructor keyword                                                constructor-syntax
+   7:2  warning  Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0)  func-visibility
+  11:2  warning  Explicitly mark visibility in function                                                             func-visibility
+  17:2  warning  Provide an error message for revert                                                                reason-string
+  17:2  warning  Use Custom Errors instead of revert statements                                                     custom-errors
+  19:1  warning  Explicitly mark visibility in function                                                             func-visibility
+  22:2  warning  Provide an error message for require                                                               reason-string
+  22:2  warning  Use Custom Errors instead of require statements                                                    custom-errors
+
+✖ 11 problems (1 error, 10 warnings)
+

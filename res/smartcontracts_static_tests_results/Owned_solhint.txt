@@ -1,0 +1,10 @@
+Contract: Owned
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/Owned.sol
+   1:1   error    Compiler version ^0.4.2 does not satisfy the ^0.8.0 semver requirement                             compiler-version
+   6:5   warning  Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0)  func-visibility
+  11:34  warning  "throw" is deprecated, avoid to use it                                                             avoid-throw
+  15:5   warning  Explicitly mark visibility in function                                                             func-visibility
+
+✖ 4 problems (1 error, 3 warnings)
+

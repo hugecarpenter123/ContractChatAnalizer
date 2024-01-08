@@ -1,0 +1,19 @@
+Contract: large
+
+2023-11-19 11:30:42,100: [1500] m.main:INFO: Registered plugins: IntrospectionAPIPlugin, <class 'manticore.ethereum.plugins.SkipRevertBasicBlocks'>, <class 'manticore.ethereum.plugins.FilterFunctions'>
+2023-11-19 11:30:42,100: [1500] m.main:INFO: Beginning analysis
+2023-11-19 11:30:42,105: [1500] m.e.manticore:INFO: Starting symbolic create contract
+2023-11-19 11:30:42,947: [1500] m.e.manticore:INFO: Starting symbolic transaction: 0
+2023-11-19 11:30:44,654: [1500] m.e.manticore:INFO: 2 alive states, 1 terminated states
+2023-11-19 11:30:44,791: [1500] m.e.manticore:INFO: Starting symbolic transaction: 1
+2023-11-19 11:30:48,459: [1500] m.e.manticore:INFO: 4 alive states, 1 terminated states
+2023-11-19 11:30:48,822: [1527] m.c.manticore:INFO: Generated testcase No. 0 - RETURN(3 txs)
+2023-11-19 11:30:48,824: [1527] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:48,876: [1529] m.c.manticore:INFO: Generated testcase No. 1 - STOP(3 txs)
+2023-11-19 11:30:48,878: [1529] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:49,284: [1526] m.c.manticore:INFO: Generated testcase No. 2 - RETURN(3 txs)
+2023-11-19 11:30:49,287: [1526] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:49,310: [1528] m.c.manticore:INFO: Generated testcase No. 3 - STOP(3 txs)
+2023-11-19 11:30:49,312: [1528] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:54,465: [1500] m.c.manticore:INFO: Results in /Users/justyna/mcore_e3iqtctx
+2023-11-19 11:30:54,465: [1500] m.c.manticore:INFO: Total time: 9.6614511013031

@@ -1,0 +1,29 @@
+Contract: time
+
+2023-11-19 11:30:07,210: [1419] m.main:INFO: Registered plugins: IntrospectionAPIPlugin, <class 'manticore.ethereum.plugins.SkipRevertBasicBlocks'>, <class 'manticore.ethereum.plugins.FilterFunctions'>
+2023-11-19 11:30:07,210: [1419] m.main:INFO: Beginning analysis
+2023-11-19 11:30:07,215: [1419] m.e.manticore:INFO: Starting symbolic create contract
+2023-11-19 11:30:07,996: [1419] m.e.manticore:INFO: Starting symbolic transaction: 0
+2023-11-19 11:30:10,540: [1419] m.e.manticore:INFO: 3 alive states, 1 terminated states
+2023-11-19 11:30:10,677: [1419] m.e.manticore:INFO: Starting symbolic transaction: 1
+2023-11-19 11:30:18,705: [1419] m.e.manticore:INFO: 9 alive states, 1 terminated states
+2023-11-19 11:30:19,120: [1457] m.c.manticore:INFO: Generated testcase No. 0 - RETURN(3 txs)
+2023-11-19 11:30:19,141: [1457] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:19,143: [1456] m.c.manticore:INFO: Generated testcase No. 1 - RETURN(3 txs)
+2023-11-19 11:30:19,173: [1456] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:19,299: [1469] m.c.manticore:INFO: Generated testcase No. 3 - STOP(3 txs)
+2023-11-19 11:30:19,321: [1469] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:19,358: [1459] m.c.manticore:INFO: Generated testcase No. 2 - STOP(3 txs)
+2023-11-19 11:30:19,360: [1459] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:19,383: [1458] m.c.manticore:INFO: Generated testcase No. 4 - RETURN(3 txs)
+2023-11-19 11:30:19,386: [1458] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:19,417: [1460] m.c.manticore:INFO: Generated testcase No. 5 - STOP(3 txs)
+2023-11-19 11:30:19,420: [1460] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:19,431: [1473] m.c.manticore:INFO: Generated testcase No. 6 - RETURN(3 txs)
+2023-11-19 11:30:19,460: [1474] m.c.manticore:INFO: Generated testcase No. 8 - RETURN(3 txs)
+2023-11-19 11:30:19,462: [1474] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:19,437: [1473] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:19,482: [1478] m.c.manticore:INFO: Generated testcase No. 7 - RETURN(3 txs)
+2023-11-19 11:30:19,484: [1478] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-19 11:30:23,882: [1419] m.c.manticore:INFO: Results in /Users/justyna/mcore_xz86jlo5
+2023-11-19 11:30:23,883: [1419] m.c.manticore:INFO: Total time: 13.153491973876953

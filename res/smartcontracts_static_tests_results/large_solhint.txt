@@ -1,0 +1,10 @@
+Contract: large
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/large.sol
+  1:1   error    Compiler version must be declared             compiler-version
+  2:5   warning  Rule is set with explicit type [var/s: uint]  explicit-types
+  3:18  warning  Rule is set with explicit type [var/s: uint]  explicit-types
+  7:5   warning  Function name must be in mixedCase            func-name-mixedcase
+
+✖ 4 problems (1 error, 3 warnings)
+

@@ -1,0 +1,31 @@
+Contract: helloWorld
+
+2023-11-18 22:34:14,012: [96076] m.main:INFO: Registered plugins: IntrospectionAPIPlugin, <class 'manticore.ethereum.plugins.SkipRevertBasicBlocks'>, <class 'manticore.ethereum.plugins.FilterFunctions'>
+2023-11-18 22:34:14,013: [96076] m.main:INFO: Beginning analysis
+2023-11-18 22:34:14,016: [96076] m.e.manticore:INFO: Starting symbolic create contract
+2023-11-18 22:34:16,099: [96076] m.e.manticore:INFO: Found a concrete globalsha3 b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01' -> 80084422859880547211683076133703299733277748156566366325829078699459944778998
+2023-11-18 22:34:17,549: [96076] m.e.manticore:INFO: Starting symbolic transaction: 0
+2023-11-18 22:34:21,001: [96076] m.c.worker:ERROR: Exception in state 4: ManticoreError('Forking on unfeasible constraint set')
+Traceback (most recent call last):
+  File "/Users/justyna/python_environment3_7/lib/python3.7/site-packages/manticore/core/worker.py", line 137, in run
+    current_state.execute()
+  File "/Users/justyna/python_environment3_7/lib/python3.7/site-packages/manticore/ethereum/state.py", line 8, in execute
+    return self._platform.execute()
+  File "/Users/justyna/python_environment3_7/lib/python3.7/site-packages/manticore/platforms/evm.py", line 3106, in execute
+    self.current_vm.execute()
+  File "/Users/justyna/python_environment3_7/lib/python3.7/site-packages/manticore/platforms/evm.py", line 1322, in execute
+    raise Concretize("Symbolic PC", expression=expression, setstate=setstate, policy="ALL")
+manticore.core.state.Concretize
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/justyna/python_environment3_7/lib/python3.7/site-packages/manticore/core/worker.py", line 158, in run
+    m._fork(current_state, exc.expression, exc.policy, exc.setstate, exc.values)
+  File "/Users/justyna/python_environment3_7/lib/python3.7/site-packages/manticore/core/manticore.py", line 518, in _fork
+    raise ManticoreError("Forking on unfeasible constraint set")
+manticore.exceptions.ManticoreError: Forking on unfeasible constraint set
+ 
+2023-11-18 22:34:22,305: [96076] m.e.manticore:INFO: 0 alive states, 2 terminated states
+2023-11-18 22:34:22,617: [96076] m.c.manticore:INFO: Results in /Users/justyna/mcore_v2t02_ig
+2023-11-18 22:34:22,617: [96076] m.c.manticore:INFO: Total time: 5.056280136108398

@@ -1,0 +1,15 @@
+Contract: Users
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/Users.sol
+   1:1  error    Compiler version ^0.4.24 does not satisfy the ^0.8.0 semver requirement  compiler-version
+   5:2  error    Line length must be no more than 80 but current length is 85             max-line-length
+   6:2  error    Line length must be no more than 80 but current length is 99             max-line-length
+  19:5  warning  Provide an error message for require                                     reason-string
+  19:5  warning  Use Custom Errors instead of require statements                          custom-errors
+  29:5  warning  Provide an error message for require                                     reason-string
+  29:5  warning  Use Custom Errors instead of require statements                          custom-errors
+  35:5  warning  Provide an error message for require                                     reason-string
+  35:5  warning  Use Custom Errors instead of require statements                          custom-errors
+
+✖ 9 problems (3 errors, 6 warnings)
+

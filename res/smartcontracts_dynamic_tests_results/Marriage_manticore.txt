@@ -1,0 +1,22 @@
+Contract: Marriage
+
+2023-11-18 22:38:10,994: [96231] m.main:INFO: Registered plugins: IntrospectionAPIPlugin, <class 'manticore.ethereum.plugins.SkipRevertBasicBlocks'>, <class 'manticore.ethereum.plugins.FilterFunctions'>
+2023-11-18 22:38:10,995: [96231] m.main:INFO: Beginning analysis
+2023-11-18 22:38:11,001: [96231] m.e.manticore:INFO: Starting symbolic create contract
+2023-11-18 22:38:12,242: [96231] m.e.manticore:INFO: Starting symbolic transaction: 0
+2023-11-18 22:38:15,069: [96231] m.e.manticore:INFO: Found a concrete globalsha3 b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' -> 73138091548938366139099779971772605061518111956507126412222883840269740007539
+2023-11-18 22:38:17,784: [96231] m.e.manticore:INFO: Found a concrete globalsha3 b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' -> 78338746147236970124700731725183845421594913511827187288591969170390706184117
+2023-11-18 22:38:20,898: [96231] m.e.manticore:INFO: Found a concrete globalsha3 b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' -> 78541660797044910968829902406342334108369226379826116161446442989268089806461
+2023-11-18 22:38:20,959: [96231] m.e.manticore:INFO: 2 alive states, 1 terminated states
+2023-11-18 22:38:21,333: [96231] m.e.manticore:INFO: Starting symbolic transaction: 1
+2023-11-18 22:38:42,409: [96231] m.e.manticore:INFO: 4 alive states, 1 terminated states
+2023-11-18 22:38:43,017: [96266] m.c.manticore:INFO: Generated testcase No. 0 - STOP(3 txs)
+2023-11-18 22:38:43,021: [96266] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-18 22:38:43,048: [96263] m.c.manticore:INFO: Generated testcase No. 1 - STOP(3 txs)
+2023-11-18 22:38:43,063: [96263] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-18 22:38:43,695: [96264] m.c.manticore:INFO: Generated testcase No. 2 - STOP(3 txs)
+2023-11-18 22:38:43,704: [96264] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-18 22:38:43,895: [96262] m.c.manticore:INFO: Generated testcase No. 3 - STOP(3 txs)
+2023-11-18 22:38:43,899: [96262] m.c.plugin:WARNING: Caught will_solve in state None, but failed to capture its initialization
+2023-11-18 22:38:52,971: [96231] m.c.manticore:INFO: Results in /Users/justyna/mcore_r2nr0tdf
+2023-11-18 22:38:52,972: [96231] m.c.manticore:INFO: Total time: 31.60678482055664

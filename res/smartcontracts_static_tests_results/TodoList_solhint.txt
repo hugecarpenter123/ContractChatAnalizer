@@ -1,0 +1,17 @@
+Contract: TodoList
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/TodoList.sol
+   1:1  error    Compiler version ^0.4.24 does not satisfy the ^0.8.0 semver requirement  compiler-version
+   6:2  error    Line length must be no more than 80 but current length is 97             max-line-length
+  16:4  warning  Constant name must be in capitalized SNAKE_CASE                          const-name-snakecase
+  22:7  warning  Provide an error message for require                                     reason-string
+  22:7  warning  Use Custom Errors instead of require statements                          custom-errors
+  28:2  error    Line length must be no more than 80 but current length is 87             max-line-length
+  35:2  error    Line length must be no more than 80 but current length is 101            max-line-length
+  36:7  warning  Provide an error message for require                                     reason-string
+  36:7  warning  Use Custom Errors instead of require statements                          custom-errors
+  37:7  warning  Provide an error message for require                                     reason-string
+  37:7  warning  Use Custom Errors instead of require statements                          custom-errors
+
+✖ 11 problems (4 errors, 7 warnings)
+

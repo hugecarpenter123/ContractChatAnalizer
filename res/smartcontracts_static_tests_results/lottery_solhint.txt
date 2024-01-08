@@ -1,0 +1,18 @@
+Contract: lottery
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/lottery.sol
+   7:3   warning  Constructor keyword not available before 0.4.22 (^0.4 .17)               constructor-syntax
+  13:5   warning  Provide an error message for require                                     reason-string
+  13:5   warning  Use Custom Errors instead of require statements                          custom-errors
+  19:5   warning  Rule is set with explicit type [var/s: uint]                             explicit-types
+  23:5   warning  Possible reentrancy vulnerabilities. Avoid state changes after transfer  reentrancy
+  28:52  warning  Rule is set with explicit type [var/s: uint]                             explicit-types
+  33:52  warning  Rule is set with explicit type [var/s: uint]                             explicit-types
+  43:42  warning  Rule is set with explicit type [var/s: uint]                             explicit-types
+  49:5   warning  Provide an error message for require                                     reason-string
+  49:5   warning  Use Custom Errors instead of require statements                          custom-errors
+  51:5   warning  Provide an error message for require                                     reason-string
+  51:5   warning  Use Custom Errors instead of require statements                          custom-errors
+
+✖ 12 problems (0 errors, 12 warnings)
+

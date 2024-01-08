@@ -1,0 +1,14 @@
+Contract: Migrations
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/Migrations.sol
+   1:1   error    Compiler version ^0.4.17 does not satisfy the ^0.8.0 semver requirement                            compiler-version
+   5:3   warning  Rule is set with explicit type [var/s: uint]                                                       explicit-types
+   5:3   warning  Variable name must be in mixedCase                                                                 var-name-mixedcase
+  11:3   warning  Explicitly mark visibility in function (Set ignoreConstructors to true if using solidity >=0.7.0)  func-visibility
+  15:3   warning  Explicitly mark visibility in function                                                             func-visibility
+  15:25  warning  Rule is set with explicit type [var/s: uint]                                                       explicit-types
+  19:3   warning  Explicitly mark visibility in function                                                             func-visibility
+  19:20  warning  Variable name must be in mixedCase                                                                 var-name-mixedcase
+
+✖ 8 problems (1 error, 7 warnings)
+

@@ -1,0 +1,14 @@
+Contract: time
+
+/Users/Jakub/Desktop/SmartContractTestMethods/Contracts/time.sol
+   1:1  error    Compiler version must be declared                            compiler-version
+   2:3  warning  Explicitly mark visibility of state                          state-visibility
+   2:3  warning  Rule is set with explicit type [var/s: uint]                 explicit-types
+   3:3  warning  Explicitly mark visibility of state                          state-visibility
+   3:3  warning  Rule is set with explicit type [var/s: uint]                 explicit-types
+   5:3  warning  Constructor keyword not available before 0.4.22 (undefined)  constructor-syntax
+  14:3  warning  Function name must be in mixedCase                           func-name-mixedcase
+  18:3  warning  Function name must be in mixedCase                           func-name-mixedcase
+
+✖ 8 problems (1 error, 7 warnings)
+
